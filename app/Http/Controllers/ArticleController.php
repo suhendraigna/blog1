@@ -11,6 +11,6 @@ class ArticleController extends Controller
     }
 
     public function show($slug){
-        return view('article', ['slug' => $slug])
+        return view('article', ['slug' => $slug]);
     }
 }
