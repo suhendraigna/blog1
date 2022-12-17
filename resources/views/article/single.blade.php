@@ -4,5 +4,5 @@ Article
 @endsection
 
 @section('content')
-<h1>Ini adalah halaman konten</h1>
+<h1>Ini adalah halaman konten {{ $slug }}</h1>
 @endsection
