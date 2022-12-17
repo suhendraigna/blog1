@@ -9,4 +9,8 @@ class ArticleController extends Controller
     public function index(){
         return view('article');
     }
+
+    public function show($slug){
+        return view('article', ['slug' => $slug])
+    }
 }
