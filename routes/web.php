@@ -22,4 +22,4 @@ Route::get('/hendra', function(){
 });
 
 Route::get('/article', 'ArticleController@index');
-Route::egt('article/{id}', 'ArticleController@show');
+Route::get('/article/{slug}', 'ArticleController@show');
