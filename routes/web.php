@@ -22,4 +22,6 @@ Route::get('/hendra', function(){
 });
 
 Route::get('/article', 'ArticleController@index');
+Route::get('/article/create', 'ArticleController@create');
 Route::get('/article/{slug}', 'ArticleController@show');
+Route::post('/article', 'ArticleController@store');

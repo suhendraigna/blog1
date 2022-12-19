@@ -4,12 +4,18 @@ Article
 @endsection
 
 @section('content')
+<body class="container">
 @foreach($articles as $article)
-  <h1>{{ $article['title'] }}</h1>
-  <p>{{ $article['subject'] }}</p>
+<div class="card mb-2">
+  <div class="card-body">
+    <h1>{{ $article['title'] }}</h1>
+    <p>{{ $article['subject'] }}</p>
+  </div>
+</div>
 @endforeach
 
   <div>
     {{ $articles->links() }}
   </div>
+</body>
 @endsection
