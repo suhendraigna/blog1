@@ -4,5 +4,10 @@ Article
 @endsection
 
 @section('content')
-<h1>Ini adalah halaman konten {{ $slug }}</h1>
+<body class="container">
+  <h1>Ini adalah halaman konten {{ $article->title }}</h1>
+  <p>{{$article->subject}}</p>
+
+  <a href="/article" class="btn btn-sm btn-info">Kembali</a>
+</body>
 @endsection

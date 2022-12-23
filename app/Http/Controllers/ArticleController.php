@@ -13,9 +13,10 @@ class ArticleController extends Controller
         return view('article.index', compact('articles'));
     }
 
-    public function show($slug){
+    public function show($id){
+        $article = Article::findOrFail($id);
         // return view('article', ['slug' => $slug]);
-        return view('article.single', compact('slug'));
+        return view('article.single', compact('article'));
     }
 
     public function create(){
@@ -28,10 +29,15 @@ class ArticleController extends Controller
             'subject' => 'required|min:10'
         ]);
 
-        $article = new Article;
-        $article->title = $request->title;
-        $article->subject = $request->subject;
-        $article->save();
+        // $article = new Article;
+        // $article->title = $request->title;
+        // $article->subject = $request->subject;
+        // $article->save();
+
+        Article::create([
+            'title' => $request->title,
+            'subject' => $request->subject
+        ]);
 
         return redirect('/article');
     }
@@ -47,11 +53,16 @@ class ArticleController extends Controller
             'subject' => 'required|min:10'
         ]);
 
-        $article = Article::find($id);
-        $article->title = $request->title;
-        $article->subject = $request->subject;
-        $article->save();
+        Article::findOrFail($id)->update([
+            'title' => $request->title,
+            'subject' => $request->subject
+        ]);
 
+        return redirect('/article/');
+    }
+
+    public function destroy($id){
+        Article::findOrFail($id)->delete();
         return redirect('/article/');
     }
 }
