@@ -5,20 +5,17 @@ Article
 
 @section('content')
 <body class="container">
-@foreach($articles as $article)
-<div class="card mb-2">
-  <div class="card-body">
-    <h1>{{ $article['title'] }}</h1>
-    <p>{{ $article['subject'] }}</p>
-    <a href="/article/{{$article['id']}}" class="btn btn-sm btn-info">Baca</a>
-    <a href="/article/{{$article['id']}}/edit" class="btn btn-sm btn-warning">Edit</a>
-
-    <form action="/article/{{$article['id']}}" method="post">
-      @csrf
-      @method('DELETE')
-      <button class="btn btn-sm btn-danger">Hapus</button>
-    </form>
+@foreach($articles->chunk(3) as $articleChunk)
+<div class="row">
+  @foreach($articleChunk as $article)
+  <div class="card col mb-2 ml-1 mr-1">
+    <div class="card-body">
+      <h1>{{ $article['title'] }}</h1>
+      <p>{{ $article['subject'] }}</p>
+      <a href="/article/{{$article['id']}}" class="btn btn-sm btn-info stretched-link">Baca</a>
+    </div>
   </div>
+  @endforeach
 </div>
 @endforeach
 

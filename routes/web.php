@@ -21,12 +21,14 @@ Route::get('/hendra', function(){
     return 'Selamat datang hendra';
 });
 
-Route::get('/article', 'ArticleController@index');
-Route::get('/article/create', 'ArticleController@create');
-Route::get('/article/{id}', 'ArticleController@show');
-Route::post('/article', 'ArticleController@store');
-Route::get('/article/{id}/edit', 'ArticleController@edit');
-Route::put('/article/{id}', 'ArticleController@update');
-Route::delete('/article/{id}', 'ArticleController@destroy');
+Route::resource('article', 'ArticleController');
+
+// Route::get('/article', 'ArticleController@index');
+// Route::get('/article/create', 'ArticleController@create');
+// Route::get('/article/{id}', 'ArticleController@show');
+// Route::post('/article', 'ArticleController@store');
+// Route::get('/article/{id}/edit', 'ArticleController@edit');
+// Route::put('/article/{id}', 'ArticleController@update');
+// Route::delete('/article/{id}', 'ArticleController@destroy');
 
 ?>
