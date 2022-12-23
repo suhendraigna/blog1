@@ -24,7 +24,7 @@ class ArticleController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'title' => 'required|unique:articles|min:4|max:255',
+            'title' => 'required|min:4|max:255',
             'subject' => 'required|min:10'
         ]);
 
@@ -34,5 +34,24 @@ class ArticleController extends Controller
         $article->save();
 
         return redirect('/article');
+    }
+
+    public function edit($id){
+        $article = Article::find($id);
+        return view('article.edit', compact('article'));
+    }
+
+    public function update($id, Request $request){
+        $request->validate([
+            'title' => 'required|min:4|max:255',
+            'subject' => 'required|min:10'
+        ]);
+
+        $article = Article::find($id);
+        $article->title = $request->title;
+        $article->subject = $request->subject;
+        $article->save();
+
+        return redirect('/article/');
     }
 }
