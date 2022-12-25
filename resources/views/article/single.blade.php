@@ -5,7 +5,7 @@ Article
 
 @section('content')
 <body class="container">
-  <h1>Ini adalah halaman konten {{ $article->title }}</h1>
+  <h1>{{ ucfirst($article->title) }}</h1>
   <p>{{$article->subject}}</p>
 
   <a href="/article" class="btn btn-sm btn-info">Kembali</a>
@@ -17,4 +17,6 @@ Article
     <button class="btn btn-sm btn-danger">Hapus</button>
   </form>
 </body>
+
+@include('layouts.footer')
 @endsection

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('title')
-Article
-@endsection
+@section('title', 'Daftar article')
 
 @section('content')
 <body class="container">
@@ -10,7 +8,7 @@ Article
   @foreach($articleChunk as $article)
   <div class="card col mb-2 ml-1 mr-1">
     <div class="card-body">
-      <h1>{{ $article['title'] }}</h1>
+      <h1>{{ ucfirst($article['title']) }}</h1>
       <p>{{ $article['subject'] }}</p>
       <a href="/article/{{$article['slug']}}" class="btn btn-sm btn-info stretched-link">Baca</a>
     </div>
@@ -23,4 +21,6 @@ Article
     {{ $articles->links() }}
   </div>
 </body>
+
+@include('layouts.footer')
 @endsection

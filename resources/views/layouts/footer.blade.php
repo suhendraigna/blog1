@@ -1,0 +1,1 @@
+<footer>~ Ini adalah blog pertama</footer>
