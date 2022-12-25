@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -13,8 +14,12 @@ class ArticleController extends Controller
         return view('article.index', compact('articles'));
     }
 
-    public function show($id){
-        $article = Article::findOrFail($id);
+    public function show($slug){
+        $article = Article::where('slug', $slug)->first();
+
+        if($article == null){
+            abort(404);
+        }
         // return view('article', ['slug' => $slug]);
         return view('article.single', compact('article'));
     }
@@ -25,7 +30,7 @@ class ArticleController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'title' => 'required|min:4|max:255',
+            'title' => 'required|unique:articles|min:4|max:255',
             'subject' => 'required|min:10'
         ]);
 
@@ -36,6 +41,7 @@ class ArticleController extends Controller
 
         Article::create([
             'title' => $request->title,
+            'slug' => Str::slug($request->title, '-'),
             'subject' => $request->subject
         ]);
 
@@ -48,6 +54,15 @@ class ArticleController extends Controller
     }
 
     public function update($id, Request $request){
+        $validation = Article::where('title', $request->title)->first();
+        $article = Article::findOrFail($id);
+        if($validation != null &&  $validation->id != $article->id){
+            $request->validate([
+                'title' => 'required|unique:articles|min:4|max:255',
+                'subject' => 'required|min:10'
+            ]);
+        }
+
         $request->validate([
             'title' => 'required|min:4|max:255',
             'subject' => 'required|min:10'
