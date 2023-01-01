@@ -6,6 +6,7 @@ Article
 @section('content')
 <body class="container">
   <h1>{{ ucfirst($article->title) }}</h1>
+  <img src="/thumbnail/{{$article->thumbnail}}" alt="Article Thumbnail" width="250">
   <p>{{$article->subject}}</p>
 
   <a href="/article" class="btn btn-sm btn-info">Kembali</a>
